@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'RuleTranslator.ui'
 #
-# Created: Sun Feb 16 21:50:40 2014
+# Created: Sun Feb 16 22:21:36 2014
 #      by: PyQt4 UI code generator 4.10.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -52,8 +52,8 @@ class Ui_MainWindow(object):
         self.max_interval = QtGui.QSpinBox(self.serie_properties)
         self.max_interval.setGeometry(QtCore.QRect(130, 80, 42, 22))
         self.max_interval.setMinimum(1)
-        self.max_interval.setMaximum(5)
-        self.max_interval.setProperty("value", 5)
+        self.max_interval.setMaximum(7)
+        self.max_interval.setProperty("value", 7)
         self.max_interval.setObjectName(_fromUtf8("max_interval"))
         self.label_2 = QtGui.QLabel(self.serie_properties)
         self.label_2.setGeometry(QtCore.QRect(181, 53, 61, 16))

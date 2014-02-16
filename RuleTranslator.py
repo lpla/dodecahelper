@@ -11,7 +11,6 @@ class StartQT(QtGui.QMainWindow):
         
     def convertSerieToNumbers(self):
         serie = ''
-
         comboBoxList = [self.ui.comboBox_1, self.ui.comboBox_2, self.ui.comboBox_3, self.ui.comboBox_4, self.ui.comboBox_5, self.ui.comboBox_6, self.ui.comboBox_7, self.ui.comboBox_8, self.ui.comboBox_9, self.ui.comboBox_10, self.ui.comboBox_11, self.ui.comboBox_12]
         
         for comboBox in comboBoxList:
@@ -59,7 +58,7 @@ class StartQT(QtGui.QMainWindow):
         
         f.write(serie)
         f.close();
-		
+		        
 if __name__ == "__main__":
     app = QtGui.QApplication(sys.argv)
     myapp = StartQT()
