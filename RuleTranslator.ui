@@ -34,20 +34,7 @@
      <string>Twelve-tone serialism generator</string>
     </property>
    </widget>
-   <widget class="QDialogButtonBox" name="buttonBox">
-    <property name="geometry">
-     <rect>
-      <x>775</x>
-      <y>410</y>
-      <width>81</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="standardButtons">
-     <set>QDialogButtonBox::Apply</set>
-    </property>
-   </widget>
-   <widget class="QGroupBox" name="groupBox">
+   <widget class="QGroupBox" name="serie_properties">
     <property name="geometry">
      <rect>
       <x>70</x>
@@ -72,7 +59,7 @@
       <string>Half-tones</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_4">
+    <widget class="QLabel" name="min_interval_label">
      <property name="geometry">
       <rect>
        <x>31</x>
@@ -85,7 +72,7 @@
       <string>Min interval:</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_3">
+    <widget class="QLabel" name="max_interval_label">
      <property name="geometry">
       <rect>
        <x>31</x>
@@ -98,7 +85,7 @@
       <string>Max interval:</string>
      </property>
     </widget>
-    <widget class="QSpinBox" name="spinBox_2">
+    <widget class="QSpinBox" name="max_interval">
      <property name="geometry">
       <rect>
        <x>130</x>
@@ -130,7 +117,7 @@
       <string>Half-tones</string>
      </property>
     </widget>
-    <widget class="QSpinBox" name="spinBox">
+    <widget class="QSpinBox" name="min_interval">
      <property name="geometry">
       <rect>
        <x>130</x>
@@ -194,7 +181,7 @@
        <height>22</height>
       </rect>
      </property>
-     <property name="currentText">
+     <property name="currentText" stdset="0">
       <string/>
      </property>
      <item>
@@ -272,7 +259,7 @@
        <height>22</height>
       </rect>
      </property>
-     <property name="currentText">
+     <property name="currentText" stdset="0">
       <string/>
      </property>
      <item>
@@ -350,7 +337,7 @@
        <height>22</height>
       </rect>
      </property>
-     <property name="currentText">
+     <property name="currentText" stdset="0">
       <string/>
      </property>
      <item>
@@ -428,7 +415,7 @@
        <height>22</height>
       </rect>
      </property>
-     <property name="currentText">
+     <property name="currentText" stdset="0">
       <string/>
      </property>
      <item>
@@ -506,7 +493,7 @@
        <height>22</height>
       </rect>
      </property>
-     <property name="currentText">
+     <property name="currentText" stdset="0">
       <string/>
      </property>
      <item>
@@ -584,7 +571,7 @@
        <height>22</height>
       </rect>
      </property>
-     <property name="currentText">
+     <property name="currentText" stdset="0">
       <string/>
      </property>
      <item>
@@ -701,7 +688,7 @@
        <height>22</height>
       </rect>
      </property>
-     <property name="currentText">
+     <property name="currentText" stdset="0">
       <string/>
      </property>
      <item>
@@ -770,7 +757,7 @@
       </property>
      </item>
     </widget>
-    <widget class="QComboBox" name="comboBox">
+    <widget class="QComboBox" name="comboBox_1">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -779,7 +766,7 @@
        <height>22</height>
       </rect>
      </property>
-     <property name="currentText">
+     <property name="currentText" stdset="0">
       <string/>
      </property>
      <item>
@@ -870,7 +857,7 @@
        <height>22</height>
       </rect>
      </property>
-     <property name="currentText">
+     <property name="currentText" stdset="0">
       <string/>
      </property>
      <item>
@@ -961,7 +948,7 @@
        <height>22</height>
       </rect>
      </property>
-     <property name="currentText">
+     <property name="currentText" stdset="0">
       <string/>
      </property>
      <item>
@@ -1104,7 +1091,7 @@
        <height>22</height>
       </rect>
      </property>
-     <property name="currentText">
+     <property name="currentText" stdset="0">
       <string/>
      </property>
      <item>
@@ -1182,7 +1169,7 @@
        <height>22</height>
       </rect>
      </property>
-     <property name="currentText">
+     <property name="currentText" stdset="0">
       <string/>
      </property>
      <item>
@@ -1251,6 +1238,19 @@
       </property>
      </item>
     </widget>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>740</x>
+      <y>410</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Apply</string>
+    </property>
    </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
