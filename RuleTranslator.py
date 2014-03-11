@@ -16,43 +16,41 @@ class StartQT(QtGui.QMainWindow):
         for comboBox in comboBoxList:
             
             if comboBox.currentText() == "C":
-                serie += ',1'
+                serie += ' 1'
             elif comboBox.currentText() == "C#/Db":
-                serie += ',2'
+                serie += ' 2'
             elif comboBox.currentText() == "D":
-                serie += ',3'
+                serie += ' 3'
             elif comboBox.currentText() == "D#/Eb":
-                serie += ',4'
+                serie += ' 4'
             elif comboBox.currentText() == "E":
-                serie += ',5'
+                serie += ' 5'
             elif comboBox.currentText() == "F":
-                serie += ',6'
+                serie += ' 6'
             elif comboBox.currentText() == "F#/Gb":
-                serie += ',7'
+                serie += ' 7'
             elif comboBox.currentText() == "G":
-                serie += ',8'
+                serie += ' 8'
             elif comboBox.currentText() == "G#/Ab":
-                serie += ',9'
+                serie += ' 9'
             elif comboBox.currentText() == "A":
-                serie += ',10'
+                serie += ' 10'
             elif comboBox.currentText() == "A#/Bb":
-                serie += ',11'
+                serie += ' 11'
             elif comboBox.currentText() == "B":
-                serie += ',12'
+                serie += ' 12'
             elif comboBox.currentText() == "":
-                serie += ',0'
+                serie += ' 0'
             
             
         s = list(serie)
-        s[0] = '{'
         
         serie = "".join(s)
-        serie += '}'
         return serie
     
     def exportResults(self):
-        f = open('parameters','w')
-        f.write('['+str(self.ui.min_interval.value()) + '-' + str(self.ui.max_interval.value()) + '];');
+        f = open('TFG OM workspace\in-files\parameters.txt','w')
+        f.write(str(self.ui.min_interval.value()) + ' ' + str(self.ui.max_interval.value()));
         
         serie = self.convertSerieToNumbers()
         
