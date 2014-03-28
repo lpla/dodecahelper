@@ -1,0 +1,4 @@
+; OM File Header - Saved 2014/03/28 19:04:23
+; (6.070009 :lisp (om-make-point 280 10) (om-make-point 50 50) (om-make-point 500 400) "" 124 0 "2014/03/25 19:39:14" "2014/03/28 19:04:23")
+; End File Header
+(in-package :om)(load-lib-for (quote nil))(setf *om-current-persistent* (om-load-lisp-patch "SerieGenerator" 6.070009 ""))
