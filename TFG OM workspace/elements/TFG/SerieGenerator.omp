@@ -1,5 +1,5 @@
-; OM File Header - Saved 2014/03/28 19:04:23
-; (6.070009 :patc (om-make-point 118 310) (om-make-point 212 182) (om-make-point 524 291) "" 183 0 "2014/03/10 11:29:51" "2014/03/26 10:43:40")
+; OM File Header - Saved 2014/04/05 13:16:31
+; (6.070009 :patc (om-make-point 118 310) (om-make-point 212 182) (om-make-point 524 272) "" 183 0 "2014/03/10 11:29:51" "2014/03/26 10:43:40")
 ; End File Header
 ; External resources 
 ; (list (list (quote :abstraction) "#P\"C:LispFunction.oml\""))
