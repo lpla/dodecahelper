@@ -50,11 +50,11 @@ class StartQT(QtGui.QMainWindow):
     
     def exportResults(self):
         f = open('TFG OM workspace\in-files\parameters.txt','w')
-        f.write(str(self.ui.min_interval.value()) + ' ' + str(self.ui.max_interval.value()));
+        f.write('(' + str(self.ui.min_interval.value()) + ' ' + str(self.ui.max_interval.value()));
         
         serie = self.convertSerieToNumbers()
         
-        f.write(serie)
+        f.write(serie + ')')
         f.close();
 		        
 if __name__ == "__main__":
