@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>931</width>
-    <height>487</height>
+    <width>929</width>
+    <height>688</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -44,7 +44,7 @@
      </rect>
     </property>
     <property name="title">
-     <string>Generation properties</string>
+     <string>Serie generation properties</string>
     </property>
     <widget class="QLabel" name="label_5">
      <property name="geometry">
@@ -134,11 +134,11 @@
      </property>
     </widget>
    </widget>
-   <widget class="QGroupBox" name="groupBox_2">
+   <widget class="QGroupBox" name="serieBase">
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>270</y>
+      <y>250</y>
       <width>861</width>
       <height>91</height>
      </rect>
@@ -1242,14 +1242,431 @@
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>740</x>
-      <y>410</y>
-      <width>75</width>
+      <x>790</x>
+      <y>360</y>
+      <width>101</width>
       <height>23</height>
      </rect>
     </property>
     <property name="text">
-     <string>Apply</string>
+     <string>Get Serie Params</string>
+    </property>
+   </widget>
+   <widget class="QGroupBox" name="scoreProperties">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>410</y>
+      <width>761</width>
+      <height>191</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Score properties</string>
+    </property>
+    <widget class="QSpinBox" name="percentajeNotes">
+     <property name="geometry">
+      <rect>
+       <x>260</x>
+       <y>57</y>
+       <width>42</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="minimum">
+      <number>1</number>
+     </property>
+     <property name="maximum">
+      <number>100</number>
+     </property>
+     <property name="value">
+      <number>20</number>
+     </property>
+    </widget>
+    <widget class="QLabel" name="percentNotes_label">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>60</y>
+       <width>231</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Percentaje of notes (100-percentaje of rests)</string>
+     </property>
+    </widget>
+    <widget class="QSpinBox" name="seriesPerVoice">
+     <property name="geometry">
+      <rect>
+       <x>260</x>
+       <y>20</y>
+       <width>42</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="minimum">
+      <number>1</number>
+     </property>
+     <property name="maximum">
+      <number>100</number>
+     </property>
+     <property name="value">
+      <number>3</number>
+     </property>
+    </widget>
+    <widget class="QLabel" name="numVoice_label">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>26</y>
+       <width>101</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Series per voice</string>
+     </property>
+    </widget>
+    <widget class="QSpinBox" name="thresholdOctaves">
+     <property name="geometry">
+      <rect>
+       <x>260</x>
+       <y>93</y>
+       <width>42</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="minimum">
+      <number>1</number>
+     </property>
+     <property name="maximum">
+      <number>1000</number>
+     </property>
+     <property name="value">
+      <number>50</number>
+     </property>
+    </widget>
+    <widget class="QLabel" name="octaveJump_label">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>98</y>
+       <width>141</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Threshold for octave jumps</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="minMaxOctave_label">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>135</y>
+       <width>161</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Min/Max octave (3 = C3 = Do3)</string>
+     </property>
+    </widget>
+    <widget class="QSpinBox" name="minOctave">
+     <property name="geometry">
+      <rect>
+       <x>260</x>
+       <y>130</y>
+       <width>42</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="minimum">
+      <number>2</number>
+     </property>
+     <property name="maximum">
+      <number>4</number>
+     </property>
+     <property name="value">
+      <number>2</number>
+     </property>
+    </widget>
+    <widget class="QLabel" name="maxDivision_label">
+     <property name="geometry">
+      <rect>
+       <x>420</x>
+       <y>98</y>
+       <width>141</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Maximum division</string>
+     </property>
+    </widget>
+    <widget class="QSpinBox" name="reRatios">
+     <property name="geometry">
+      <rect>
+       <x>650</x>
+       <y>57</y>
+       <width>42</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="minimum">
+      <number>1</number>
+     </property>
+     <property name="maximum">
+      <number>100</number>
+     </property>
+     <property name="value">
+      <number>1</number>
+     </property>
+    </widget>
+    <widget class="QLabel" name="measure_label">
+     <property name="geometry">
+      <rect>
+       <x>420</x>
+       <y>27</y>
+       <width>101</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Measure</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="ratios_label">
+     <property name="geometry">
+      <rect>
+       <x>420</x>
+       <y>60</y>
+       <width>231</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Reduction and enlargement ratios</string>
+     </property>
+    </widget>
+    <widget class="QSpinBox" name="maxDivision">
+     <property name="geometry">
+      <rect>
+       <x>650</x>
+       <y>93</y>
+       <width>42</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="minimum">
+      <number>1</number>
+     </property>
+     <property name="maximum">
+      <number>16</number>
+     </property>
+     <property name="singleStep">
+      <number>1</number>
+     </property>
+     <property name="value">
+      <number>8</number>
+     </property>
+    </widget>
+    <widget class="QLabel" name="figureTempo_label">
+     <property name="geometry">
+      <rect>
+       <x>420</x>
+       <y>130</y>
+       <width>201</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Max and min figure tempo generation 
+(for a r/e ratio of 2, 4 is a quarter note,
+8 is a quaver)</string>
+     </property>
+    </widget>
+    <widget class="QSpinBox" name="maxFigure">
+     <property name="geometry">
+      <rect>
+       <x>650</x>
+       <y>130</y>
+       <width>42</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="minimum">
+      <number>1</number>
+     </property>
+     <property name="maximum">
+      <number>64</number>
+     </property>
+     <property name="value">
+      <number>1</number>
+     </property>
+    </widget>
+    <widget class="QSpinBox" name="maxOctave">
+     <property name="geometry">
+      <rect>
+       <x>310</x>
+       <y>130</y>
+       <width>42</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="minimum">
+      <number>2</number>
+     </property>
+     <property name="maximum">
+      <number>4</number>
+     </property>
+     <property name="value">
+      <number>4</number>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="measure1">
+     <property name="geometry">
+      <rect>
+       <x>650</x>
+       <y>20</y>
+       <width>41</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="currentText" stdset="0">
+      <string>4</string>
+     </property>
+     <property name="currentIndex">
+      <number>2</number>
+     </property>
+     <item>
+      <property name="text">
+       <string>1</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>2</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>4</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>8</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>16</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>32</string>
+      </property>
+     </item>
+    </widget>
+    <widget class="QComboBox" name="measure2">
+     <property name="geometry">
+      <rect>
+       <x>690</x>
+       <y>20</y>
+       <width>41</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="currentText" stdset="0">
+      <string>4</string>
+     </property>
+     <property name="currentIndex">
+      <number>2</number>
+     </property>
+     <item>
+      <property name="text">
+       <string>1</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>2</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>4</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>8</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>16</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>32</string>
+      </property>
+     </item>
+    </widget>
+    <widget class="QSpinBox" name="reRatios2">
+     <property name="geometry">
+      <rect>
+       <x>690</x>
+       <y>57</y>
+       <width>42</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="minimum">
+      <number>1</number>
+     </property>
+     <property name="maximum">
+      <number>100</number>
+     </property>
+     <property name="value">
+      <number>4</number>
+     </property>
+    </widget>
+    <widget class="QSpinBox" name="minFigure">
+     <property name="geometry">
+      <rect>
+       <x>690</x>
+       <y>130</y>
+       <width>42</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="minimum">
+      <number>1</number>
+     </property>
+     <property name="maximum">
+      <number>64</number>
+     </property>
+     <property name="value">
+      <number>16</number>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QPushButton" name="pushButton_2">
+    <property name="geometry">
+     <rect>
+      <x>790</x>
+      <y>620</y>
+      <width>101</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Get Score Params</string>
     </property>
    </widget>
   </widget>

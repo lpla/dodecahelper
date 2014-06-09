@@ -8,7 +8,8 @@ class StartQT(QtGui.QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         QtCore.QObject.connect(self.ui.pushButton, QtCore.SIGNAL("clicked()"), self.exportResults)
-        
+        QtCore.QObject.connect(self.ui.pushButton_2, QtCore.SIGNAL("clicked()"), self.exportScoreResults)
+
     def convertSerieToNumbers(self):
         serie = ''
         comboBoxList = [self.ui.comboBox_1, self.ui.comboBox_2, self.ui.comboBox_3, self.ui.comboBox_4, self.ui.comboBox_5, self.ui.comboBox_6, self.ui.comboBox_7, self.ui.comboBox_8, self.ui.comboBox_9, self.ui.comboBox_10, self.ui.comboBox_11, self.ui.comboBox_12]
@@ -56,7 +57,13 @@ class StartQT(QtGui.QMainWindow):
         
         f.write(serie + ')')
         f.close();
-		        
+		
+    def exportScoreResults(self):
+        f = open('TFG OM workspace\in-files\scoreParameters.txt','w')
+        f.write('(' + str(self.ui.seriesPerVoice.value()) + ' ' + str(self.ui.percentajeNotes.value()) + ' ' + str(self.ui.thresholdOctaves.value()) + ' ' + str(self.ui.minOctave.value()) + ' ' + str(self.ui.maxOctave.value()) + ' ' + str(self.ui.measure1.currentText()) + ' ' + str(self.ui.measure2.currentText()) + ' ' + str(self.ui.reRatios.value()) + ' ' + str(self.ui.reRatios2.value()) + ' ' + str(self.ui.maxDivision.value()) + ' ' + str(self.ui.maxFigure.value()) + ' ' + str(self.ui.minFigure.value()) + ')');
+        f.close();
+
+
 if __name__ == "__main__":
     app = QtGui.QApplication(sys.argv)
     myapp = StartQT()
