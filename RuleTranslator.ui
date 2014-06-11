@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>929</width>
-    <height>688</height>
+    <height>570</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,7 +18,7 @@
     <property name="geometry">
      <rect>
       <x>50</x>
-      <y>40</y>
+      <y>20</y>
       <width>271</width>
       <height>16</height>
      </rect>
@@ -37,14 +37,14 @@
    <widget class="QGroupBox" name="serie_properties">
     <property name="geometry">
      <rect>
-      <x>70</x>
-      <y>80</y>
+      <x>40</x>
+      <y>50</y>
       <width>291</width>
       <height>151</height>
      </rect>
     </property>
     <property name="title">
-     <string>Serie generation properties</string>
+     <string>Series generation properties</string>
     </property>
     <widget class="QLabel" name="label_5">
      <property name="geometry">
@@ -138,13 +138,13 @@
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>250</y>
+      <y>210</y>
       <width>861</width>
       <height>91</height>
      </rect>
     </property>
     <property name="title">
-     <string>Serie base</string>
+     <string>Series base</string>
     </property>
     <widget class="QLabel" name="label_18">
      <property name="geometry">
@@ -1239,26 +1239,13 @@
      </item>
     </widget>
    </widget>
-   <widget class="QPushButton" name="pushButton">
-    <property name="geometry">
-     <rect>
-      <x>790</x>
-      <y>360</y>
-      <width>101</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Get Serie Params</string>
-    </property>
-   </widget>
    <widget class="QGroupBox" name="scoreProperties">
     <property name="geometry">
      <rect>
-      <x>60</x>
-      <y>410</y>
+      <x>40</x>
+      <y>310</y>
       <width>761</width>
-      <height>191</height>
+      <height>201</height>
      </rect>
     </property>
     <property name="title">
@@ -1476,7 +1463,7 @@
      <property name="geometry">
       <rect>
        <x>420</x>
-       <y>130</y>
+       <y>124</y>
        <width>201</width>
        <height>41</height>
       </rect>
@@ -1655,18 +1642,82 @@
       <number>16</number>
      </property>
     </widget>
+    <widget class="QLabel" name="voices_label">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>172</y>
+       <width>161</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Num of voices</string>
+     </property>
+    </widget>
+    <widget class="QSpinBox" name="voices">
+     <property name="geometry">
+      <rect>
+       <x>260</x>
+       <y>168</y>
+       <width>42</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="minimum">
+      <number>1</number>
+     </property>
+     <property name="maximum">
+      <number>100</number>
+     </property>
+     <property name="value">
+      <number>2</number>
+     </property>
+    </widget>
+    <widget class="QLabel" name="transpose_label">
+     <property name="geometry">
+      <rect>
+       <x>420</x>
+       <y>174</y>
+       <width>161</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Transpose threshold</string>
+     </property>
+    </widget>
+    <widget class="QSpinBox" name="transpose">
+     <property name="geometry">
+      <rect>
+       <x>650</x>
+       <y>170</y>
+       <width>42</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="minimum">
+      <number>1</number>
+     </property>
+     <property name="maximum">
+      <number>1000</number>
+     </property>
+     <property name="value">
+      <number>1</number>
+     </property>
+    </widget>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
       <x>790</x>
-      <y>620</y>
+      <y>520</y>
       <width>101</width>
       <height>23</height>
      </rect>
     </property>
     <property name="text">
-     <string>Get Score Params</string>
+     <string>Get Parameters</string>
     </property>
    </widget>
   </widget>

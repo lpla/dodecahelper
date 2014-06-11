@@ -1,4 +1,6 @@
-(defun gestionOctavas (listaNotas threshold maxoctava minoctava)
+(in-package :mfl)
+
+(om::defmethod! gestionOctavas (listaNotas threshold maxoctava minoctava)
   
   (setq trigger (+ minoctava (random (+ 1 (- (+ 1 maxoctava) (+ 1 minoctava))))))
 

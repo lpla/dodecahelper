@@ -8,7 +8,6 @@ class StartQT(QtGui.QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         QtCore.QObject.connect(self.ui.pushButton, QtCore.SIGNAL("clicked()"), self.exportResults)
-        QtCore.QObject.connect(self.ui.pushButton_2, QtCore.SIGNAL("clicked()"), self.exportScoreResults)
 
     def convertSerieToNumbers(self):
         serie = ''
@@ -57,11 +56,13 @@ class StartQT(QtGui.QMainWindow):
         
         f.write(serie + ')')
         f.close();
+        
+        f2 = open('TFG OM workspace\in-files\scoreParameters.txt','w')
+        f2.write('(' + str(self.ui.seriesPerVoice.value()) + ' ' + str(self.ui.percentajeNotes.value()) + ' ' + str(self.ui.thresholdOctaves.value()) + ' ' + str(self.ui.minOctave.value()) + ' ' + str(self.ui.maxOctave.value()) + ' ' + str(self.ui.measure1.currentText()) + ' ' + str(self.ui.measure2.currentText()) + ' ' + str(self.ui.reRatios.value()) + ' ' + str(self.ui.reRatios2.value()) + ' ' + str(self.ui.maxDivision.value()) + ' ' + str(self.ui.maxFigure.value()) + ' ' + str(self.ui.minFigure.value()) + ' ' + str(self.ui.voices.value()) + ' ' + str(self.ui.transpose.value()) + ')');
+        f2.close();
+        
 		
-    def exportScoreResults(self):
-        f = open('TFG OM workspace\in-files\scoreParameters.txt','w')
-        f.write('(' + str(self.ui.seriesPerVoice.value()) + ' ' + str(self.ui.percentajeNotes.value()) + ' ' + str(self.ui.thresholdOctaves.value()) + ' ' + str(self.ui.minOctave.value()) + ' ' + str(self.ui.maxOctave.value()) + ' ' + str(self.ui.measure1.currentText()) + ' ' + str(self.ui.measure2.currentText()) + ' ' + str(self.ui.reRatios.value()) + ' ' + str(self.ui.reRatios2.value()) + ' ' + str(self.ui.maxDivision.value()) + ' ' + str(self.ui.maxFigure.value()) + ' ' + str(self.ui.minFigure.value()) + ')');
-        f.close();
+        self.ui.statusbar.showMessage("Parameters successfully exported", msecs=5000)
 
 
 if __name__ == "__main__":
