@@ -7,8 +7,9 @@ class StartQT(QtGui.QMainWindow):
         QtGui.QWidget.__init__(self, parent)
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-        QtCore.QObject.connect(self.ui.pushButton, QtCore.SIGNAL("clicked()"), self.exportResults)
+        QtCore.QObject.connect(self.ui.pushButton, QtCore.SIGNAL("clicked()"), self.exportResults) #Conectamos el botón de exportar los parámetros con la función de exportar
 
+    #Convierte los valores en letras de las notas en números (C = 1, C#/Db = 2...)
     def convertSerieToNumbers(self):
         serie = ''
         comboBoxList = [self.ui.comboBox_1, self.ui.comboBox_2, self.ui.comboBox_3, self.ui.comboBox_4, self.ui.comboBox_5, self.ui.comboBox_6, self.ui.comboBox_7, self.ui.comboBox_8, self.ui.comboBox_9, self.ui.comboBox_10, self.ui.comboBox_11, self.ui.comboBox_12]
@@ -48,6 +49,8 @@ class StartQT(QtGui.QMainWindow):
         serie = "".join(s)
         return serie
     
+	
+	#Exportamos el los valores de la interfaz en forma de lista a los ficheros para las series y para las partituras
     def exportResults(self):
         f = open('TFG OM workspace\in-files\parameters.txt','w')
         f.write('(' + str(self.ui.min_interval.value()) + ' ' + str(self.ui.max_interval.value()));
@@ -64,7 +67,7 @@ class StartQT(QtGui.QMainWindow):
 		
         self.ui.statusbar.showMessage("Parameters successfully exported", msecs=5000)
 
-
+#Inicializamos la interfaz y la mostramos
 if __name__ == "__main__":
     app = QtGui.QApplication(sys.argv)
     myapp = StartQT()

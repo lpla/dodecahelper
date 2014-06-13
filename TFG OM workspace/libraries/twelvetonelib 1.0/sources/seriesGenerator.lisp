@@ -21,7 +21,7 @@ temp-list)
 
 
 
-(om::defmethod! myf (listaB min max)
+(om::defmethod! seriesGenerator (listaB min max)
   
   (setq notas '(1 2 3 4 5 6 7 8 9 10 11 12))
     ; Obtiene las notas que faltan en la secuencia parcial
@@ -39,9 +39,9 @@ temp-list)
       (if (= 0 (position 0 lista)) ; Si es la primera posición de la lista
           (progn
           (setf (nth (position 0 lista) lista) x)
-          (if (not (position 0 (myf lista min max))); llama recursivamente a myf con la nueva lista
-                                  ; si myf devuelve una lista completa entonces termina y devuelve la lista
-              (return (myf lista min max))
+          (if (not (position 0 (seriesGenerator lista min max))); llama recursivamente a seriesGenerator con la nueva lista
+                                  ; si seriesGenerator devuelve una lista completa entonces termina y devuelve la lista
+              (return (seriesGenerator lista min max))
             )
           )
 
@@ -55,9 +55,9 @@ temp-list)
               )
               (progn
               (setf (nth (position 0 lista) lista) x); si las dos notas cumplen las restricciones, asigna la nueva nota en la posición del primer cero
-              (if (not (position nil (myf lista min max))); llama recursivamente a myf con la nueva lista
-                                  ; si myf devuelve una lista completa entonces termina y devuelve la lista
-                  (return (myf lista min max))
+              (if (not (position nil (seriesGenerator lista min max))); llama recursivamente a seriesGenerator con la nueva lista
+                                  ; si seriesGenerator devuelve una lista completa entonces termina y devuelve la lista
+                  (return (seriesGenerator lista min max))
               )
               )
           )

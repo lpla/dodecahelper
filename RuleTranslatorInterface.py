@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'RuleTranslator.ui'
 #
-# Created: Wed Jun 11 15:42:30 2014
+# Created: Thu Jun 12 20:10:34 2014
 #      by: PyQt4 UI code generator 4.10.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -456,7 +456,7 @@ class Ui_MainWindow(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow", None))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Twelve-tone serialism generator", None))
         self.label.setText(_translate("MainWindow", "Twelve-tone serialism generator", None))
         self.serie_properties.setTitle(_translate("MainWindow", "Series generation properties", None))
         self.label_5.setText(_translate("MainWindow", "Half-tones", None))
