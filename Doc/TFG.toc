@@ -1,0 +1,20 @@
+\select@language {spanish}
+\contentsline {chapter}{Agradecimientos}{III}
+\contentsline {section}{Resumen}{VII}
+\contentsline {chapter}{Lista de figuras}{XI}
+\contentsline {chapter}{Lista de tablas}{XIII}
+\contentsline {chapter}{\numberline {1}Introduction}{1}
+\contentsline {chapter}{\numberline {2}Marco te\IeC {\'o}rico}{3}
+\contentsline {section}{\numberline {2.1}Dodecafonismo}{3}
+\contentsline {section}{\numberline {2.2}OpenMusic}{6}
+\contentsline {section}{\numberline {2.3}Lisp}{8}
+\contentsline {subsection}{\numberline {2.3.1}Common Lisp}{8}
+\contentsline {section}{\numberline {2.4}Python}{8}
+\contentsline {section}{\numberline {2.5}QT}{9}
+\contentsline {section}{\numberline {2.6}PyQt}{9}
+\contentsline {chapter}{\numberline {3}Cuerpo del trabajo}{11}
+\contentsline {section}{\numberline {3.1}Generador de series}{13}
+\contentsline {section}{\numberline {3.2}Generaci\IeC {\'o}n de la partitura}{14}
+\contentsline {chapter}{\numberline {4}Conclusiones}{15}
+\contentsline {chapter}{Bibliograf\IeC {\'\i }a}{17}
+\contentsline {chapter}{\numberline {A}M\IeC {\'a}s cosas}{19}
