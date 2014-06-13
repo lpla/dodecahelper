@@ -1,3 +1,5 @@
+(in-package :mfl)
+
 (setq listaBase '(2 5 0 0 0 0 0 0 0 0 0 0))
 (setq minNotas 4)
 (setq maxNotas 5)
@@ -5,10 +7,10 @@
 ; function to rotate a list:
 ; (my-rotate (list 0 1 2 3 4 5)) -> (1 2 3 4 5 0)
 ; (my-rotate (list 0 1 2 3 4 5) 2) -> (2 3 4 5 0 1)
-(defun my-rotate (list &optional (n 1))
+(om::defmethod! my-rotate (list &optional (n 1))
 (if (<= n 0) list (my-rotate (append (last list) (reverse (cdr (reverse list)))) (1- n))))
 ; function to randomize a list
-(defun randomize-list (list)
+(om::defmethod! randomize-list (list)
 (setf temp-list nil)
 (dotimes (i (length list))
 (setf list (my-rotate list (random (length list))))
@@ -19,7 +21,7 @@ temp-list)
 
 
 
-(defun myf (listaB min max)
+(om::defmethod! myf (listaB min max)
   
   (setq notas '(1 2 3 4 5 6 7 8 9 10 11 12))
     ; Obtiene las notas que faltan en la secuencia parcial
