@@ -5,7 +5,7 @@
 \contentsline {chapter}{Lista de figuras}{VII}{section*.6}
 \contentsline {chapter}{\'{I}ndice de figuras}{VII}{section*.7}
 \contentsline {chapter}{\chapternumberline {1}Introduction}{1}{chapter.1}
-\contentsline {chapter}{\chapternumberline {2}Marco te\IeC {\'o}rico}{2}{chapter.2}
+\contentsline {chapter}{\chapternumberline {2}Marco te\IeC {\'o}rico y tecnolog\IeC {\'\i }as utilizadas}{2}{chapter.2}
 \contentsline {section}{\numberline {2.1}Dodecafonismo}{2}{section.2.1}
 \contentsline {section}{\numberline {2.2}OpenMusic}{5}{section.2.2}
 \contentsline {section}{\numberline {2.3}Lisp}{7}{section.2.3}
