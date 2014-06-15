@@ -1,25 +1,23 @@
 \select@language {spanish}
 \contentsline {chapter}{Agradecimientos}{II}{chapter*.2}
 \contentsline {section}{Resumen}{V}{chapter*.5}
-\contentsline {chapter}{\'Indice general}{VI}{section*.6}
-\contentsline {chapter}{Lista de figuras}{VII}{section*.6}
-\contentsline {chapter}{\'{I}ndice de figuras}{VII}{section*.7}
-\contentsline {chapter}{\chapternumberline {1}Introduction}{1}{chapter.1}
-\contentsline {chapter}{\chapternumberline {2}Marco te\IeC {\'o}rico y tecnolog\IeC {\'\i }as utilizadas}{2}{chapter.2}
+\contentsline {chapter}{Lista de figuras}{VII}{chapter*.6}
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
+\contentsline {chapter}{\numberline {2}Marco te\IeC {\'o}rico y tecnolog\IeC {\'\i }as utilizadas}{2}{chapter.2}
 \contentsline {section}{\numberline {2.1}Dodecafonismo}{2}{section.2.1}
-\contentsline {section}{\numberline {2.2}OpenMusic}{5}{section.2.2}
-\contentsline {section}{\numberline {2.3}Lisp}{7}{section.2.3}
-\contentsline {subsection}{Common Lisp}{7}{section*.8}
-\contentsline {section}{\numberline {2.4}Python}{7}{section.2.4}
-\contentsline {section}{\numberline {2.5}QT}{8}{section.2.5}
-\contentsline {section}{\numberline {2.6}PyQt}{8}{section.2.6}
-\contentsline {chapter}{\chapternumberline {3}Cuerpo del trabajo}{9}{chapter.3}
-\contentsline {section}{\numberline {3.1}Esquema del sistema}{9}{section.3.1}
-\contentsline {subsection}{Interfaz gr\IeC {\'a}fica}{9}{section*.9}
-\contentsline {subsection}{Generador de series}{10}{section*.10}
-\contentsline {subsection}{Generaci\IeC {\'o}n de la partitura}{12}{section*.11}
-\contentsline {subsection}{Uso de los ficheros exportados}{14}{section*.12}
-\contentsline {chapter}{\chapternumberline {4}Conclusiones}{17}{chapter.4}
-\contentsline {chapter}{Bibliograf\IeC {\'\i }a}{19}{figure.4.1}
-\contentsline {chapter}{Bibliograf\'{\i }a}{19}{section*.14}
-\contentsline {appendix}{\chapternumberline {A}Configuraci\IeC {\'o}n del entorno}{20}{appendix.Alph1}
+\contentsline {section}{\numberline {2.2}Backtracking}{5}{section.2.2}
+\contentsline {section}{\numberline {2.3}OpenMusic}{5}{section.2.3}
+\contentsline {section}{\numberline {2.4}Lisp}{8}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}Common Lisp}{8}{subsection.2.4.1}
+\contentsline {section}{\numberline {2.5}Python}{9}{section.2.5}
+\contentsline {section}{\numberline {2.6}QT}{9}{section.2.6}
+\contentsline {section}{\numberline {2.7}PyQt}{9}{section.2.7}
+\contentsline {chapter}{\numberline {3}Cuerpo del trabajo}{10}{chapter.3}
+\contentsline {section}{\numberline {3.1}Esquema del sistema}{10}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}Interfaz gr\IeC {\'a}fica}{10}{subsection.3.1.1}
+\contentsline {subsection}{\numberline {3.1.2}Generador de series}{12}{subsection.3.1.2}
+\contentsline {subsection}{\numberline {3.1.3}Generaci\IeC {\'o}n de la partitura}{13}{subsection.3.1.3}
+\contentsline {subsection}{\numberline {3.1.4}Uso de los ficheros exportados}{15}{subsection.3.1.4}
+\contentsline {chapter}{\numberline {4}Conclusiones}{18}{chapter.4}
+\contentsline {chapter}{Bibliograf\IeC {\'\i }a}{20}{figure.4.1}
+\contentsline {chapter}{\numberline {A}Configuraci\IeC {\'o}n del entorno}{22}{appendix.Alph1}
