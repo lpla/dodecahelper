@@ -1,11 +1,11 @@
 This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
-The top-level auxiliary file: memoire.aux
+The top-level auxiliary file: memoir.aux
 The style file: ieeetr.bst
 Database file #1: bibliography.bib
 You've used 14 entries,
             1876 wiz_defined-function locations,
-            540 strings with 5016 characters,
+            540 strings with 5014 characters,
 and the built_in function-call counts, 1946 in all, are:
 = -- 195
 > -- 57
