@@ -203,7 +203,7 @@ La unión de los dos proyectos anteriores se conoce como PyQt4, que aprovecha el
 
 \chapter{Cuerpo del trabajo}\label{cuerpo}
 \section{Esquema del sistema}
-El asistente de composición de música dodecafónica viene estructurado por 5 capas de software: la interfaz con Qt4, el script de generación de parámetros en Python3, el ``patch'' (en adelante programa) en OpenMusic (mayoritariamente código de Common Lisp) para la generación de la serie, el programa en OpenMusic para la generación de la partitura en OpenMusic y la visualización de la partitura completa en un visor externo (ya desarrollado, como puede ser Finale Notepad, que es gratuito y compatible con la versión del formato MusicXML que exporta OpenMusic).
+El asistente de composición de música dodecafónica viene estructurado por 5 capas de software: la interfaz con Qt4, el script de generación de parámetros en Python3, el ``patch'' en OpenMusic (mayoritariamente código de Common Lisp) para la generación de la serie, el programa en OpenMusic para la generación de la partitura en OpenMusic y la visualización de la partitura completa en un visor externo (ya desarrollado, como puede ser Finale Notepad, que es gratuito y compatible con la versión del formato MusicXML que exporta OpenMusic).
 
 \begin{figure}
 \centering
@@ -221,7 +221,7 @@ La interfaz en Qt4 se ha diseñado utilizando Qt4 Designer, herramienta incluida
 \caption{Interfaz en Qt bajo Windows 7} \label{fig:qtinterface}
 \end{figure}
 
-El fichero que se obtiene del editor Qt4 Designer es un .ui, que con la herramienta pyuic4 (Python-UI converter 4) convertimos el fichero .ui obtenido en un fichero de Python. Dado que la herramienta pyuic4 muestra por pantalla el resultado, se ha de ejecutar con el símbolo ``>'' después del argumento del fichero a convertir para guardarlo en un fichero .py. El comando en Windows es (suponiendo que estamos en la carpeta con los 2 ficheros a utilizar):
+El fichero que se obtiene del editor Qt4 Designer es un .ui, que con la herramienta pyuic4 (Python-UI converter 4) convertimos el fichero .ui obtenido en un fichero de Python. Dado que la herramienta pyuic4 muestra por pantalla el resultado, se ha de ejecutar con el símbolo ``>'' después del argumento del fichero a convertir para guardarlo en un fichero .py. El comando en Windows es (suponiendo que estamos en la carpeta con los dos ficheros a utilizar):
 
    \lstset{language=Bash,
            basicstyle=\ttfamily\scriptsize,
@@ -356,7 +356,7 @@ El desarrollo de este sistema se ha basado en un modelo incremental, de forma qu
 
 Durante el desarrollo de este proyecto han surgido varios problemas de implementación dada la poca experiencia con OpenMusic, haciéndome ver las limitaciones que este programa tiene. El primer planteamiento fue el de implementar el método de generación de series dodecafónicas de forma visual. De hecho, hay gran parte implementado, pero a la hora de programar recursiones, la interfaz da muchos problemas y es mucho más difícil de conseguir que programándolo en Common Lisp. El ``patch'' que se inició a programar también está incluido en el proyecto y se llama \emph{seriegenerator}.
 
-Otro problema existe con el tratamiento de MusicXML. Este estándar para la visualización y guardado de partituras tiene diferentes versiones. OpenMusic tiene implementada una versión antigua de forma que muchos de los editores de partituras no aceptan. En su página (y como hemos demostrado en el ejemplo) recomiendan Finale, y desde ahí, se permite exportarlo a unos formatos con implementaciones más actualizadas. También ha habido problemas de compatibilidad probando versiones más actualizadas de PyQT (como es PyQT5) pero da problemas con algunos elementos de la interfaz como las señales de activación de funciones, con lo que se decidió utilizar PyQT4, que es más estable.
+Otro problema existe con el tratamiento de MusicXML. Este estándar para la visualización y guardado de partituras tiene diferentes versiones. OpenMusic tiene implementada una versión antigua de forma que muchos de los editores de partituras no aceptan ficheros con esta codificación. En su página (y como hemos demostrado en el ejemplo) recomiendan Finale, y desde ahí, se permite exportarlo a unos formatos con implementaciones más actualizadas. También ha habido problemas de compatibilidad probando versiones más actualizadas de PyQT (como es PyQT5) pero da problemas con algunos elementos de la interfaz como las señales de activación de funciones, con lo que se decidió utilizar PyQT4, que es más estable.
 
 Durante el desarrollo del proyecto han surgido ideas (tanto programando, como leyendo documentación como hablando con otros músicos) para mejorar el proyecto a largo plazo. Entre esas ideas, existe la posibilidad de programar formas compositivas barrocas y clásicas (estructura A-B-A, contrapuntos por ampliación, reducción, cánon...), desarrollar las series entre voces (es decir, la primera voz puede tener la mitad de una serie y la segunda la otra mitad como se puede ver en la imagen \ref{fig:twelvetoneexample}).
 
@@ -379,13 +379,13 @@ De cualquier manera, tanto el desarrollo de esta aplicación como de la propia b
 
 \appendix
 \chapter{Configuración del entorno}\label{aped.A}
-Dado que sólo dispongo de medios con GNU/Linux y Windows 7 para probar el proyecto y el paquete de GNU/Linux está aún en fase alpha/beta a fecha de hoy, se explica en este apéndice la configuración del proyecto para el asistente y la librería de la que depende sobre Windows 7.
+Dada la disponibilidad limitada de mediospara probar el proyecto (sistemas con GNU/Linux y Windows 7) y que el paquete de GNU/Linux de OpenMusic está aún en fase alpha/beta a fecha de hoy, se explica en este apéndice la configuración del proyecto para el asistente y la librería de la que depende sobre Windows 7.
 
 Accedemos a la página del IRCAM donde están los binarios para descargar: \url{http://forumnet.ircam.fr/shop/fr/forumnet/43-openmusic.html}
 
 Instalamos el paquete con el asistente de instalación. En caso de no tener instalado Python, procedemos a descargarlo de su página web e instalarlo: \url{https://www.python.org/downloads/}
 
-Descomprimimos el código y veremos que en la raíz está el fichero \emph{RuleTranslator.py}. Se ejecuta (por terminal o con doble click si está convenientemente configurado por el instalador de Python) y podemos exportar unos datos de prueba. Podemos cerrar la interfaz para configurar OpenMusic.
+Descomprimimos el código del asistente y veremos que en la raíz está el fichero \emph{RuleTranslator.py}. Se ejecuta (por terminal o con doble click si está convenientemente configurado por el instalador de Python) y podemos exportar unos datos de prueba. Podemos cerrar la interfaz para configurar OpenMusic.
 
 Abrimos OpenMusic y podemos elegir entre crear nuestro ``workspace'' o abrir uno ya existente. Si abrimos el que hemos descomprimido no hay que configurar nada. Vamos a explicar cómo configurar nuestro proyecto suponiendo que tenemos un ``workspace'' alternativo o uno nuevo.
 
@@ -400,7 +400,7 @@ Cuando tengamos nuestro ``workspace'' abierto vamos a configurar la librería de
 
 Copiamos los ficheros de \emph{TFG OM workspace/in-files} que son los generados por la interfaz y los movemos a la carpeta in-files de nuestro ``workspace''. Ahora tan sólo tenemos que copiar los ``patches'' que forman el asistente, que están en la carpeta \emph{TFG OM workspace/elements/TFG}. Copiando la carpeta TFG en la carpeta elements de nuestro ``workspace'' será suficiente para que al reiniciar OpenMusic, detecte los nuevos ``patches''.
 
-De esta forma, conseguimos cargar el proyecto del asistente en nuestro ``workspace'' y utilizarlo, modificarlo o crear un asistente derivado en un entorno diferente al adjunto.
+De esta forma, conseguimos cargar el proyecto del asistente en nuestro ``workspace'' y utilizarlo, modificarlo o crear un asistente derivado en un entorno diferente al adjunto. Para ejecutar el generador de series y el generador de partituras de una sola evaluación, tan sólo hay que evaluar el objeto \emph{and} que hay en el ``patch'' del asistente.
 
 
 \end{document}
