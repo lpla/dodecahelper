@@ -1,5 +1,8 @@
 \begin{thebibliography}{10}
 
+\bibitem{quickreference}
+D.~Román, ``Twelve-tone technique: A quick reference.'' PDF.
+
 \bibitem{musictheory}
 ``Advanced music theory lesson 7- atonality and serialism.'' Website, Abril
   2010.
@@ -31,10 +34,6 @@ J.~P. Burkholder, D.~J. Grout, and C.~V. Palisca, {\em Historia de la m\'usica
 \newblock Alicanza M\'usica, 7~ed., 2008.
 \newblock Pages 894-906.
 
-\bibitem{wiki:backtracking}
-Wikipedia, ``Backtracking --- wikipedia{,} the free encyclopedia,'' 2014.
-\newblock [Online; accessed 15-June-2014].
-
 \bibitem{openmusic}
 IRCAM, ``Openmusic,'' 2014.
 
@@ -46,6 +45,10 @@ Wikipedia, ``Lisp (programming language) --- wikipedia{,} the free
 \bibitem{wiki:commonlisp}
 Wikipedia, ``Common lisp --- wikipedia{,} the free encyclopedia,'' 2014.
 \newblock [Online; accessed 12-June-2014].
+
+\bibitem{wiki:backtracking}
+Wikipedia, ``Backtracking --- wikipedia{,} the free encyclopedia,'' 2014.
+\newblock [Online; accessed 15-June-2014].
 
 \bibitem{historiadelamusica}
 C.~B. Izquierdo, ``Historia de la m\'usica del siglo xx.'' Online, printed for

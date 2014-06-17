@@ -6,12 +6,16 @@
 \usepackage{listings}
 \usepackage[T1]{fontenc}
 \usepackage{hyperref}
+\usepackage{algorithm2e}
 
 \newcommand{\textsharp}{$\sharp$}
 
 \begin{document}
 
 \includepdf[pages={1}]{img/Portada_GII.pdf}
+\newpage
+\mbox{}
+
 \thispagestyle{empty} % para que no se numere esta pagina
 
 \title{Asistente de composici\'on de m\'usica dodecaf\'onica para OpenMusic}
@@ -28,14 +32,10 @@
 \thispagestyle{empty} % para que no se numere esta pagina
 
 
-\chapter*{Justificación y objetivos}
-\pagenumbering{Roman} % para comenzar la numeracion de paginas en numeros romanos
-La principal razón por la que he realizado este trabajo ha sido por aprovechar los conocimientos de los dos estudios realizados, el Grado Profesional de música y el Grado en Ingeniería Informática con especialidad en Computación en un proyecto que pueda ser útil para ambas áreas, ayudando a los músicos a componer y sentando una base para los ingenieros que quieran hacer un asistente de composición o que tengan ideas para mejorarlo. También una de las razones por la cuál he elegido esta área de la música como es la composición, y más concretamente el dodecafonismo, es la curiosidad sobre la programación en entornos de composición musical, la mejora e integración de los ordenadores en tareas mecánicas o programables como la composición de música dodecafónica y la relación de la música dodecafónica con el álgebra lineal.
-
-El objetivo principal que se quiere alcanzar con este trabajo es, como he mencionado antes, mejorar el proceso de composición de música dodecafónica con una herramienta inédita proporcionando al compositor ideas y fragmentos generados con las restricciones que él desee así como retroalimentar al programa proponiendo más restricciones o formas compositivas que pueda crear para que otros ingenieros puedan mejorar este sistema.
-
 
 \chapter*{Agradecimientos}
+\pagenumbering{Roman} % para comenzar la numeracion de paginas en numeros romanos
+
 \addcontentsline{toc}{chapter}{Agradecimientos} % si queremos que aparezca en el índice
 \markboth{AGRADECIMIENTOS}{AGRADECIMIENTOS} % encabezado
  
@@ -46,9 +46,16 @@ A mi tutor, Carlos, por orientar de una manera sencilla el proyecto y ser honest
 A mis compañeros y profesores del grado, con los que he compartido muy buenos momentos y mucha experiencia profesional.
 
 \chapter*{Licencia}
-Documento liberado la licencia Creative Commons Attribution - ShareAlike 4.0 International (CC BY-SA)
+Documento liberado bajo licencia Creative Commons Attribution - ShareAlike 4.0 International (CC BY-SA).
 
 \url{http://creativecommons.org/licenses/by-sa/4.0/}
+
+
+
+Código fuente bajo licencia GNU GENERAL PUBLIC LICENSE (GPL).
+
+\url{http://www.gnu.org/copyleft/gpl.html}
+
 
 
 \begin{figure}
@@ -69,11 +76,17 @@ Laura}
 \addcontentsline{toc}{section}{Resumen} % si queremos que aparezca en el índice
 \markboth{RESUMEN}{RESUMEN} % encabezado
 
-El asistente de composición de música dodecafónica es un conjunto de capas software implementadas sobre varias tecnologías, entre ellas OpenMusic y Python, para crear obras dodecafónicas según unas restricciones impuestas por el usuario. El sistema es capaz de obtener una serie dodecafónica en base a una semilla propuesta cumpliendo además ciertas restricciones para luego obtener todas las series derivadas de ella y componer con estas series y otras restricciones.
+Este trabajo se ha realizado para unir los conocimientos del Grado Profesional de música y el Grado en Ingeniería Informática en un proyecto de composición automática que asista a los compositores a componer obras dodecafónicas, obras interesantes desde el punto de vista matemático y programático.
+
+El dodecafonismo es un método de composición musical basado en una serie de doce notas (las de la escala cromática) donde no existe centro tonal. Esa serie se deriva en una matriz de series que es la utilizada para componer las obras dodecafónicas.
+
+La composición automática es una forma de composición basada en elementos mecánicos, o más frecuentemente electrónicos y digitales, en la toma de decisiones.
+
+Así pues, el asistente de composición de música dodecafónica es un conjunto de capas software implementadas sobre varias tecnologías, entre ellas OpenMusic y Python, para crear obras dodecafónicas según unas restricciones impuestas por el usuario. El sistema es capaz de obtener una serie dodecafónica en base a una semilla propuesta cumpliendo además ciertas restricciones para luego obtener todas las series derivadas de ella y componer con estas series y otras restricciones.
 
 Se genera una partitura con ritmos, saltos de octava y silencios además de poder exportar el resultado a formato MusicXML para poder seguir editando en cualquier editor de partituras actual. Aquí presentaremos y mostraremos en imágenes el asistente con algunos ejemplos así como de exponer diferentes partes de su desarrollo. También se mostrará la estructura y la programación del programa bajo las diferentes tecnologías utilizadas y se sugieren enfoques para el futuro desarrollo.
 
-
+Solventados los problemas durante el desarrollo incremental de este proyecto, los resultados son satisfactorios y han surgido nuevas ideas para futuros desarrollos derivados, mejoras y expansiones de este proyecto.
 
 \newpage
 
@@ -88,16 +101,21 @@ Se genera una partitura con ritmos, saltos de octava y silencios además de pode
 
 
 
-\chapter{Introduction}
+\chapter{Introducción}
 \pagenumbering{arabic} % para empezar la numeración con números
 Con el avance del procesamiento de la información, han surgido herramientas para músicos que ayudan a realizar tareas tanto a nivel de tratamiento del sonido, edición y síntesis como a nivel de aprendizaje musical y rítmico, abarcando tanto a músicos aficionados o profesionales como a ingenieros de diversas ramas. Una de las vías que mantiene unidos a los músicos profesionales y los ingenieros es la música por ordenador (o la representación musical), donde los grupos que tratan esta materia investigan y desarrollan estructuras, lenguajes y paradigmas adaptados a la música.
 
 Las áreas que más se tratan en estos grupos actualmente son la clasificación de música, análisis y composición automática (siendo esta la que más tiempo se lleva investigando y desarrollando). Todas estas áreas de la música conllevan el conocimiento de técnicas como el reconocimiento de patrones (\emph{pattern recognition}) o el aprendizaje máquina (\emph{machine learning}). Desarrollaremos en este trabajo la asistencia para la composición de obras dodecafónicas por ordenador, aún no desarrollada en el ámbito de la composición automática.
 
-\chapter{Marco teórico y tecnologías utilizadas}\label{marcoteorico}
+\section{Justificación y objetivos}
+La principal razón por la que he realizado este trabajo ha sido por aprovechar los conocimientos de los dos estudios realizados, el Grado Profesional de música y el Grado en Ingeniería Informática con especialidad en Computación en un proyecto que pueda ser útil para ambas áreas, ayudando a los músicos a componer y sentando una base para los ingenieros que quieran hacer un asistente de composición o que tengan ideas para mejorarlo. También una de las razones por la cuál he elegido esta área de la música como es la composición, y más concretamente el dodecafonismo, es la curiosidad sobre la programación en entornos de composición musical, la mejora e integración de los ordenadores en tareas mecánicas o programables como la composición de música dodecafónica y la relación de la música dodecafónica con el álgebra lineal.
+
+El objetivo principal que se quiere alcanzar con este trabajo es, como he mencionado antes, mejorar el proceso de composición de música dodecafónica con una herramienta inédita proporcionando al compositor ideas y fragmentos generados con las restricciones que él desee así como retroalimentar al programa proponiendo más restricciones o formas compositivas que pueda crear para que otros ingenieros puedan mejorar este sistema.
+
+
 \section{Dodecafonismo}
 
-Arnold Schoenberg (1874-1951) fue un compositor, teórico musical y pinto austriaco de origen judío. En 1905 creó un método de composición basado en la ausencia de centro tonal, el atonalismo, ya que para Arnold la tonalidad era un recurso que se había explotado al máximo y se debía buscar alternativas armónicas para la composición. Este método aumentó la dificultad de composición de obras extensas ya que era muy limitado para crear estructuras coherentes de larga duración sin que estuviesen apoyadas en un texto que las cohesionase. Este movivo provocó que entre 1914 y 1921 no publicara ningún escrito hasta que creó una solución. Entre 1921 y 1923 inició un método de composición musical derivado del atonalismo que solventaba sus limitaciones: el dodecafonismo (\emph{twelve-tone method})\cite{styleandidea}. La primera obra que publicó con este método es la Suite para piano Op. 25.
+Arnold Schoenberg (1874-1951) fue un compositor, teórico musical y pintor austriaco de origen judío. En 1905 creó un método de composición basado en la ausencia de centro tonal, el atonalismo, ya que para Schoenberg la tonalidad era un recurso que se había explotado al máximo y se debía buscar alternativas armónicas para la composición. Este método aumentó la dificultad de composición de obras extensas ya que era muy limitado para crear estructuras coherentes de larga duración sin que estuviesen apoyadas en un texto que las cohesionase. Este movivo provocó que entre 1914 y 1921 no publicara ningún escrito hasta que creó una solución. Entre 1921 y 1923 inició un método de composición musical derivado del atonalismo que solventaba sus limitaciones: el dodecafonismo (\emph{twelve-tone method})\cite{styleandidea}. La primera obra que publicó con este método es la Suite para piano Op. 25.
 
 Schoenberg creó este método por el mismo hecho histórico por el que se pasó de la música modal a la música tonal: por el desarrollo natural e histórico de la música.
 
@@ -107,13 +125,20 @@ Schoenberg creó este método por el mismo hecho histórico por el que se pasó 
 
 Este método de composición es un tipo de serialismo (composición basada en series de notas, de ritmos, de dinámicas...) en el que no se busca la importancia de unas notas sobre otras (que es la base de la tonalidad). Es decir, busca lo contrario que la música tonal (por ejemplo, la música clásica, o la música rock), que tiene normalmente un tono predominante y unas notas dominantes sobre otras (la dominante sobre la tónica, que definen el tono y crea centros tonales). Para evitar este énfasis, se crea una serie con las doce notas de la escala cromática  sin repetirse ninguna, de forma que se les da la misma importancia, se crean series derivadas, y se compone solamente con estas construcciones \cite{wiki:twelvetonetechnique}. Esta forma de componer crea, pues, atonalidad pero mantiene una razón para la estructura que son las series. 
 
-Para componer con el método dodecafonista primero se ha de obtener, como hemos dicho anteriormente, una matriz donde la primera fila es la serie original (las 12 notas de la escala cromática en un orden) y la primera columna es la serie invertida (serie construida por movimiento contrario de la serie original, es decir, si la primera nota es un Do y la segunda un Re en la serie original, en la invertida será un Do y un Si). Si leemos la fila y columna al contrario (de izquierda a derecha o de abajo a arriba respectivamente) obtenemos la serie retrógrada y la serie retrógrada inversa en cada caso. El resto de elementos de la matriz se puede obtener transportando en base a los elementos de la primera fila o la primera columna.
+Para componer con el método dodecafonista primero se ha de obtener, como hemos dicho anteriormente, una matriz donde la primera fila es la serie original (las 12 notas de la escala cromática en un orden) y la primera columna es la serie invertida (serie construida por movimiento contrario de la serie original, es decir, si la primera nota es un Do y la segunda un Re en la serie original, en la invertida será un Do y un Si). Si leemos la fila y columna al contrario (de derecha a izquierda o de abajo a arriba respectivamente) obtenemos la serie retrógrada y la serie retrógrada inversa en cada caso. El resto de elementos de la matriz se puede obtener transportando en base a los elementos de la primera fila o la primera columna.
 
 En la figura \ref{fig:matrix} vemos un ejemplo. La primera fila de la matriz es la serie original (Do, Do\textsharp, Re, Si, La\textsharp, Sol\textsharp, Mi, La, Re\textsharp, Fa\textsharp, Fa, Sol) y que la serie inversa se obtiene leyéndola de derecha a izquierda: Sol, Fa, Fa\textsharp, Re\textsharp, La, Mi, Sol\textsharp, La\textsharp, Si, Re, Do\textsharp, Do). Para obtener la primera columna vemos que la distancia del primer elemento con el segundo es un semitono ascendente (de Do a Do\textsharp), con lo que el segundo elemento de la serie inversa será un Si, es decir, un semitono descendente. Exactamente igual con el tercer elemento, en el que del segundo elemento al tercero de la serie original (Do\textsharp y Re) hay otro semitono ascendente, con lo que en la serie invertida, será un semitono descendente respecto al segundo elemento de la serie inversa (Si), por lo que la serie por ahora sería: Do, Si, La\textsharp. Si continuamos con este procedimiento obtenemos la serie inversa: Do, Si, La\textsharp, Do\textsharp Re, Mi, Sol\textsharp, Re\textsharp, La, Fa\textsharp, Sol, Fa. 
 
-La numeración se basa en el número de la nota: 0 es Do, 1 es Do\textsharp, 2 es Re... Y P es la serie original, R la retrógrada, I la inversa y RI es la retrógrada inversa. Para el resto de matriz, transportamos verticalmente o horizontalmente. Si lo hacemos horizontalmente, vemos que como del primer elemento al segundo hay un semitono descendente (de Do a Si), transportamos todos los elementos de la serie original un semitono hacia abajo. En la tercera fila se puede basar en la que acabamos de obtener o en la serie base, el transporte es diferente pero el resultado es el mismo.
+La numeración se basa en el número de la nota: 0 es Do, 1 es Do\textsharp, 2 es Re, etc.; y P es la serie original, R la retrógrada, I la inversa y RI es la retrógrada inversa. Para el resto de matriz, transportamos verticalmente o horizontalmente. Si lo hacemos horizontalmente, vemos que como del primer elemento al segundo hay un semitono descendente (de Do a Si), transportamos todos los elementos de la serie original un semitono hacia abajo. Y aplicamos este procedimiento sucesivamente con el resto de filas.
 
-Un ejemplo muy claro de una obra dodecafónica se puede ver en este PDF cortesía de Dan Román del Conservatorio de Música de Puerto Rico: \url{http://musike.cmpr.edu/v001/roman-eng.pdf}
+Un ejemplo muy claro de una obra dodecafónica se puede ver en la figura \ref{fig:exampleTwelveToneScore} extraída de una referencia rápida sobre el dodecafonismo cortesía de Dan Román del Conservatorio de Música de Puerto Rico \cite{quickreference}.
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{img/exampleTwelveToneScore.png} 
+\caption{Ejemplo de obra dodecafónica. \cite{quickreference}} \label{fig:exampleTwelveToneScore}
+\end{figure}
+
 
 \begin{figure}
 \centering
@@ -125,27 +150,19 @@ Un ejemplo muy claro de una obra dodecafónica se puede ver en este PDF cortesí
 \em Expuesto de esta manera, el método puede parecer arbitrario. Pero para Schönberg, se trataba de un modo sistemático de llevar a cabo lo que ya estaba haciendo en su música tonal: integrar la armonía y la melodía mediante la composición con un número limitado de conjuntos (aquí, los definidos por los segmentos de la serie), delimitar las frases y subfrases por medio de la saturación cromática (regulada por la aparición de las doce notas en cada exposición de la serie) y apoyarse en la variación en desarrollo. \cite{palisca}
 \end{quote}
 
-\section{Backtracking}
-\begin{quote}
 
-\em Vuelta atrás, (Backtracking) es una estrategia para encontrar soluciones a problemas que satisfacen restricciones. El término fue acuñado por primera vez por el matemático estadounidense D. H. Lehmer en la década de 1950. 
+\section{Composición automática}
+La composición automática es una forma de composición basada en elementos mecánicos, o más frecuentemente electrónicos y digitales, en la toma de decisiones. Sirve para componer en base a algoritmos y nutrirse de ideas en el caso de que la composición sea difícil por la complejidad en el proceso de la creación o por conseguir coherencia (por ejemplo, en música atonal).
 
-En su forma básica, la idea de backtracking se asemeja a un recorrido en profundidad dentro de un grafo dirigido. El grafo en cuestión suele ser un árbol, o por lo menos no contiene ciclos. Sea cual sea su estructura, existe sólo implícitamente. El objetivo del recorrido es encontrar soluciones para algún problema. Esto se consigue construyendo soluciones parciales a medida que progresa el recorrido; estas soluciones parciales limitan las regiones en las que se puede encontrar una solución completa. El recorrido tiene éxito si, procediendo de esta forma, se puede definir por completo una solución. En este caso el algoritmo puede, o bien detenerse (si lo único que se necesita es una solución del problema) o bien seguir buscando soluciones alternativas (si deseamos examinarlas todas). Por otra parte, el recorrido no tiene éxito si en alguna etapa la solución parcial construida hasta el momento no se puede completar. En tal caso, el recorrido vuelve atrás exactamente igual que en un recorrido en profundidad, eliminando sobre la marcha los elementos que se hubieran añadido en cada fase. Cuando vuelve a un nodo que tiene uno o más vecinos sin explorar, prosigue el recorrido de una solución. \cite{wiki:backtracking}
+Es interesante unir el concepto de música dodecafónica y la composición automática ya que la música dodecafónica tiene unos patrones y unos algoritmos fuertemente definidos pero ello también crea dificultad en el compositor de crear obras atractivas y coherentes. Así dejamos al ordenador las tareas programáticas y mecánicas para que el compositor se centre en restringir las ideas que produce el asistente.
 
+\chapter{Tecnologías utilizadas}\label{marcoteorico}
 
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{img/backtracking.png}
-\caption{Esquema recursivo del backtracking, apuntes de la asignatura Análisis y Diseño de Algoritmos} \label{fig:backtracking}
-\end{figure}
-
-
-\end{quote}
 \section{OpenMusic}
 
 OpenMusic \cite{openmusic} es un entorno de programación visual orientado a objetos basado en Common Lisp. Se puede utilizar como entorno de programación visual para programación en Lisp ya que implementa la mayoría de construcciones del lenguaje Common Lisp (condicionales, bucles o gestión de listas). Además de añadir un conjunto de estructuras y objetos musicales como acordes, secuencias de acordes, ritmos... Tamién incluye herramientas de reproducción MIDI, análisis de ficheros de sonido, representación de objetos 3D...
 
-Este entorno fue diseñado en el IRCAM (Institut de Recherche et Coordination Acoustique/Musique) en 1998 y lanzado bajo licencia LGPL. Funciona bajo Windows, OS X y en los últimos meses se han empezado a publicar versiones para GNU/Linux.
+Este entorno fue diseñado en el IRCAM (Institut de Recherche et Coordination Acoustique/Musique) en 1998 y lanzado bajo licencia LGPL. Funciona bajo Windows, OS X y en los últimos meses se han empezado a publicar versiones para GNU/Linux. Al ser un software desarrollado en el IRCAM, que es una institución muy importante en el ámbito de la música por ordenador, existe una gran comunidad de usuarios, entre ellos,  muchos compositores de música contemporánea.
 
 \begin{figure}
 \centering
@@ -154,7 +171,7 @@ Este entorno fue diseñado en el IRCAM (Institut de Recherche et Coordination Ac
 \end{figure}
 
 
-Los siguientes compositores han reconocido utilizar OpenMusic \cite{wiki:openmusic}:
+De hecho, los siguientes compositores han reconocido utilizar OpenMusic \cite{wiki:openmusic}:
 
 \begin{itemize}
 \item Alain Bancquart
@@ -171,7 +188,8 @@ Los siguientes compositores han reconocido utilizar OpenMusic \cite{wiki:openmus
 \item Marco Stroppa
 \end{itemize}
 
-Además de poder programar de forma visual, al estar basado en Common Lisp, se permite crear funciones escritas en código y ser utilizadas en el entorno visual.
+Es por ello muy interesante la posibilidad de desarrollar software como este asistente de música dodecafónica bajo OpenMusic y publicarlo para que personas interesadas como las mencionadas arriba puedan utilizarlo libremente y mejorarlo.
+
 \section{Lisp}
 Lisp es una familia de lenguajes de programación multiparadigma basados en listas y con notación basada en paréntesis creada por John McCarthy en 1958 en el MIT (Massachusetts Institute of Technology). El nombre de LISP deriva de ``LISt Processing'', dado que la estructura más importante del lenguaje es la lista (el código fuente de Lisp está compuesto por listas).\cite{wiki:lisp} Se popularizó en los entornos de la inteligencia artificial y fue pionero en conceptos de la ciencia de la computación como las estructuras de árboles o los tipos dinámicos.
 
@@ -189,8 +207,6 @@ La sintaxis del código se basa en expresiones S, donde el primer elemento despu
 \subsection{Common Lisp}
 Common Lisp es un dialecto de Lisp estandarizado por la ANSI (American National Standards Institute) creado para estandarizar las variantes de Lisp. Es un lenguaje de propósito general y multiparadigma: combina los paradigmas procedural, funcional y orientada a objetos. Al ser un lenguaje dinámico (los comportamientos del lenguaje se producen en tiempo de ejecución) facilita el desarrollo de software de forma incremental. Existen diferentes implementaciones del estándar, tanto de código abierto como propietarios. \cite{wiki:commonlisp} 
 
-En comparación con el otro dialecto más famoso de Lisp, Scheme, las diferencias vienen dadas por algún cambio mínimo en la sintaxis (las declaraciones de funciones con defun dejan el nombre de la función fuera de la lista de argumentos en Common Lisp y en Scheme dentro de la lista, por ejemplo), soporte para diferentes tipos de números (Common Lisp soporta racionales, punto flotantes, enteros con precisión arbitraria... En cambio Scheme como mucho soporta números en coma flotante) y optimizaciones a nivel de la cola de recursión o del tamaño del código del lenguaje.
-
 \section{Python}
 Es un lenguaje de programación interpretado, multiparadigma (orientado a objetos, imperativo y funcional), tipado débil, multiplataforma y de código abierto (Licencia PSFL). La filosofía de este lenguaje es la de una sintaxis preparada para hacer un código legible y sencillo.
 
@@ -198,7 +214,7 @@ Es un lenguaje de programación interpretado, multiparadigma (orientado a objeto
 QT es un framework para aplicaciones multiplataforma utilizado para el desarrollo de interfaces gráficas en proyectos software o también programas sin interfaz para consola y consolas para servidores. También es software libre (bajo licencia GPLv3). El proyecto se hizo famoso en el desarrollo del entorno KDE y con el desarrollo de empresas como Nokia.
 
 \section{PyQt}
-La unión de los dos proyectos anteriores se conoce como PyQt4, que aprovecha el conjunto de clases de Qt para crear una interfaz y las herramientas de diseño que incorpora y la simplicidad y posibilidad del uso de objetos del código de Python, además de ser un lenguaje que no necesita un ciclo de \emph{edición/compilación/linkeado/ejecución} que aumenta la productividad. Además, como las dos herramientas en las que está basado el proyecto es multiplataforma, lo convierte también en multiplataforma. Todo este conjunto de características hace que sea el complemento perfecto para crear interfaces y scripts rápidos para programas de OpenMusic.
+La unión de los dos proyectos anteriores se conoce como PyQt4, que aprovecha el conjunto de clases de Qt para crear una interfaz y las herramientas de diseño que incorpora y la simplicidad y posibilidad del uso de objetos del código de Python, además de ser un lenguaje que no necesita un ciclo de \emph{edición/compilación/linkeado/ejecución}, por lo que aumenta la productividad. Además, como las dos herramientas en las que está basado el proyecto es multiplataforma, lo convierte también en multiplataforma. Todo este conjunto de características hace que sea el complemento perfecto para crear interfaces y scripts rápidos para programas de OpenMusic.
 
 
 \chapter{Cuerpo del trabajo}\label{cuerpo}
@@ -236,62 +252,15 @@ pyuic4.bat RuleTranslator.ui > RuleTranslatorInterface.py
 
 Este fichero es cargado por el script en Python y se le llama con las directivas propias de Qt4 en Python3. Carga la interfaz, convierte los valores de la interfaz en números y los agrupa en forma de lista antes de exportarlos a dos ficheros de texto para que OpenMusic los pueda abrir y procesar. En el código fuente se puede ver claramente cómo funciona este sencillo script.
 
-\subsection{Generador de series}
-Una vez hemos obtenido los parámetros del compositor, se cargan con el método de lectura de ficheros de OpenMusic y se convierten con un método de Lisp llamado \emph{read-from-string}. El método encargado de la generación de la serie basándose en las restricciones de mínimo y máximo salto de semitonos y en la serie semilla (introducidos por la interfaz) es el método escrito en Common Lisp \emph{seriesGenerator} (empaquetado en forma de librería para hacerlo más accesible y reutilizable en otros proyectos).
+La interfaz presenta una serie de parámetros como se puede ver en la figura \ref{fig:qtinterface}. El significado de las restricciones que se introducen son:
 
-Este código ha sido diseñado para obtener una solución siempre que sea posible dadas las restricciones utilizando backtracking en una implementación recursiva. El esquema del algoritmo diseñado es:
+Parámetros de la serie:
+\begin{itemize}
+\item máximo y mínimo intervalo de notas en la serie base (en semitonos)
+\item la serie base sobre la cual aplicar las restricciones anteriores para obtener una serie final (si existiese)
+\end{itemize}
 
-   \lstset{language=Lisp,
-           basicstyle=\ttfamily\scriptsize,
-           keywordstyle=\ttfamily,
-           stringstyle=\ttfamily,
-           commentstyle=\ttfamily,
-          breaklines=true
-          }
-\begin{lstlisting}
-    ; Obtiene las notas que faltan en la secuencia parcial y las guarda en una lista llamada notasfaltan
-
-    ; reordenar aleatoriamente notasfaltan
-
-  	; para cada elemento de notasfaltan iteramos (bucle)
-      ; Creamos una copia para no modificar la lista original
-      ; seleccionar nueva nota y comprobamos si cumple las restricciones
-      ; obtener posicion del primer cero (elemento a rellenar en la semilla)
-      ; en la posicion -1 esta la nota anterior
-      
-      ; Si es la primera posicion de la lista no se mira el elemento anterior porque no hay
-          ; llama recursivamente a seriesGenerator con la nueva lista
-          ; si seriesGenerator devuelve una lista completa entonces termina el bucle y devuelve la lista
-
-
-          ; Si no es la primera posicion de la lista, miramos las restricciones respecto a la nota anterior
-              ; si las dos notas cumplen las restricciones, asigna la nueva nota en la posicion del primer cero (hueco en la semilla)
-              ; llama recursivamente a seriesGenerator con la nueva lista
-              ; si seriesGenerator devuelve una lista completa entonces termina y devuelve la lista
-
-
-
-
-  ; si al terminar el bucle ninguna nota cumple la restriccion devuelve lista vacia
-
-\end{lstlisting}
-
-Dado que cualquier solución que cumpla las condiciones nos sirve, no recorremos todo el árbol, tan sólo nos desplazamos por el árbol hasta encontrar la primera solución posible.
-
-Para poder ver la implementación en Lisp, abrir el fichero \emph{serieGenerator.lisp} en la librería \emph{twelvetonelib 1.0} dentro del ``workspace'', donde están los fuentes de todos los métodos implementados en Lisp.
-
-Obtenida la serie con este código, procedemos a computar las 4 series básicas (sin trasporte) de la matriz dodecafónica: P, I, R, RI.
-
-La serie P la obtenemos del método anterior y la inversa se obtiene aplicando el método \emph{reverse} de Lisp. Para obtener la serie retrógrada programamos el mismo proceso que el manual.
-
-Existen dos métodos en OpenMusic llamados x->dx y dx->x que devuelven una lista de intervalos de una lista de notas y viceversa. Es decir, si a x->dx se le pasan los valores de las notas en midicents 2000, 2500, 3200 devuelve (500 700), y si a dx->x le pasamos una nota (por ejemplo 1500) y los valores obtenidos con el ejemplo de antes (500 700), obtenemos (1500 2000 2700).
-
-Si multiplicamos por -1 el valor de los intervalos (tal y como hacemos a mano, ya que si un intervalo es de X semitonos ascendente en la serie original, la inversa son X semitonos descendente) obtenemos la serie inversa y si le aplicamos el método \emph{reverse} tenemos la retrógrada inversa.
-
-Este proceso está programado en un ``patch'' de OpenMusic dado que visualmente es sencillo de programar. En el proyecto de OM se llama \emph{12rmatgen}.
-
-\subsection{Generación de la partitura}
-En la generación de una partitura intervienen restricciones introducidas en la interfaz: 
+Parámetros de la partitura:
 \begin{itemize}
 \item número de series que aparecen en una voz (determinando en parte su longitud)
 \item porcentaje de notas (para generar también silencios)
@@ -304,11 +273,93 @@ En la generación de una partitura intervienen restricciones introducidas en la 
 \item un threshold para el transporte (a mayor valor, menos transporte se utiliza, es decir, más se utilizan las series básicas P, I, R, RI).
 \end{itemize}
 
-Estos parámetros se cargan de forma similar que con las restricciones de la serie, sólo que aquí, dado que son 14 parámetros, se ha decidido por crear un ``patch'' interno (un subprograma) dentro del ``patch'' que genera la partitura (\emph{serialscoregenerator}).
+Una vez introducidos los parámetros deseados, se clica sobre el botón ``Get Parameters'' para exportarlos al fichero que leerá OpenMusic.
+
+\subsection{Generador de series}
+Una vez hemos obtenido los parámetros del compositor, se cargan con el método de lectura de ficheros de OpenMusic y se convierten con un método de Lisp llamado \emph{read-from-string}. El método encargado de la generación de la serie basándose en las restricciones de mínimo y máximo salto de semitonos y en la serie semilla (introducidos por la interfaz) es el método escrito en Common Lisp \emph{seriesGenerator} (empaquetado en forma de librería para hacerlo más accesible y reutilizable en otros proyectos).
+
+Este código ha sido diseñado para obtener una solución siempre que sea posible dadas las restricciones utilizando backtracking en una implementación recursiva.
+
+Backtracking es una estrategia para encontrar soluciones a problemas que satisfacen restricciones. En su forma básica, la idea de backtracking se asemeja a un recorrido en profundidad dentro de un grafo dirigido (que suele ser un árbol). El recorrido tiene éxito si se puede definir por completo una solución. En este caso el algoritmo puede, o bien detenerse (si lo único que se necesita es una solución del problema, que es el caso del método generador de series) o bien seguir buscando soluciones alternativas (si deseamos examinarlas todas). \cite{wiki:backtracking}
+
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{img/backtracking.png}
+\caption{Esquema recursivo del backtracking, apuntes de la asignatura Análisis y Diseño de Algoritmos} \label{fig:backtracking}
+\end{figure}
+
+El esquema del algoritmo diseñado (algoritmo \ref{esquemalisp}) se basa en el esquema recursivo del backtracking (figura \ref{fig:backtracking}).
+
+
+\begin{algorithm}
+    \KwData {Restricciones de intervalos y serie parcial}
+	\KwResult{Serie parcialmente completa}
+    Obtiene las notas que faltan en la secuencia parcial y las guarda en una lista llamada notasfaltan
+    
+    Reordenar aleatoriamente notasfaltan
+
+  	\For{cada elemento en notasfaltan}{
+      Creamos una copia para no modificar la lista original
+      
+      Seleccionar nueva nota y comprobamos si cumple las restricciones
+      
+      Obtener posicion del primer cero (elemento a rellenar en la semilla)
+      
+      \If{es la primera posicion de la lista} 
+      	  {No se mira el elemento anterior porque no hay
+      	  
+          Llama recursivamente a seriesGenerator con la nueva lista
+          
+          \If{seriesGenerator devuelve una lista completa}{
+          	  \Return lista
+          	}
+		  }
+		\Else{
+          Miramos las restricciones respecto a la nota anterior
+          
+          \If{las dos notas cumplen las restricciones}
+          {Asigna la nueva nota en la posicion del primer cero (hueco en la semilla)
+          
+          Llama recursivamente a seriesGenerator con la nueva lista
+          
+          \If{seriesGenerator devuelve una lista completa}{
+            \Return lista
+           }
+          }
+              }
+
+	}
+
+
+  \If{ninguna nota cumple las restricciones}{
+  	\Return{lista vacía}
+  	}
+ \caption{Esquema del generador de series implementado con backtracking recursivo} \label{esquemalisp}
+\end{algorithm}
+
+
+
+Dado que cualquier solución que cumpla las condiciones nos sirve, no recorremos todo el árbol, tan sólo nos desplazamos por el árbol hasta encontrar la primera solución posible.
+
+Para poder ver la implementación en Lisp, abrir el fichero \emph{serieGenerator.lisp} en la librería \emph{twelvetonelib 1.0} dentro del ``workspace'', donde están los fuentes de todos los métodos implementados en Lisp.
+
+Obtenida la serie con este código, procedemos a computar las 4 series básicas (sin trasporte) de la matriz dodecafónica: P, I, R, RI.
+
+La serie P la obtenemos del método anterior y la inversa se obtiene aplicando el método \emph{reverse} de Lisp. Para obtener la serie retrógrada programamos el mismo proceso que el manual.
+
+Existen dos métodos en OpenMusic llamados x->dx y dx->x que devuelven una lista de intervalos de una lista de notas y viceversa. Es decir, si a x->dx se le pasan los valores de las notas en midicents\footnote{Un midicent es una centésima de una unidad MIDI, es decir, de medio tono.} 2000, 2500, 3200 devuelve (500 700), y si a dx->x le pasamos una nota (por ejemplo 1500) y los valores obtenidos con el ejemplo de antes (500 700), obtenemos (1500 2000 2700).
+
+Si multiplicamos por -1 el valor de los intervalos (tal y como hacemos a mano, ya que si un intervalo es de X semitonos ascendente en la serie original, la inversa son X semitonos descendente) obtenemos la serie inversa y si le aplicamos el método \emph{reverse} tenemos la retrógrada inversa.
+
+Este proceso está programado en un ``patch'' de OpenMusic dado que visualmente es sencillo de programar. En el proyecto de OM se llama \emph{12rmatgen}.
+
+\subsection{Generación de la partitura}
+En la generación de una partitura intervienen restricciones introducidas en la interfaz. Estos parámetros se cargan de forma similar que con las restricciones de la serie, sólo que aquí, dado que son 14 parámetros, se ha decidido por crear un ``patch'' interno (un subprograma) dentro del ``patch'' que genera la partitura (\emph{serialscoregenerator}).
 
 La generación de la partitura se procesa a través de varias fases. Partimos de las 4 series generadas con \emph{12rmatgen} (P, I, R, RI). Primero vamos a determinar la longitud de la voz, es decir, cuántas series va a tener una voz. De manera que si una voz tiene dos series, esa voz tendrá una longitud de 24 notas (luego se le añadirán silencios o no y se pondrá un compás y una longitud a esas notas).
 
-En el bucle \emph{longitud y transporte} iteramos tantas veces como se le haya asignado por parámetro, eligiendo una de las series de la matriz de forma aleatoria. El resultado le llega al siguiente bucle que calcula la longitud de las notas. Itera para cada una de las notas de la voz y les asigna un valor de longitud entre los valores pasados por parámetro. Además, con el threshold de silencios, en el caso en el que la función random pase ese threshold, la longitud de la nota será negativa (si el valor 1000 para la duración es una figura de negra, un valor de -1000 es un silencio de negra).
+En el bucle \emph{longitud y transporte} iteramos tantas veces como se le haya asignado por parámetro, eligiendo una de las series de la matriz de forma aleatoria. El resultado le llega al siguiente bucle que calcula la longitud de las notas. Itera para cada una de las notas de la voz y les asigna un valor de longitud entre los valores pasados por parámetro. Además, con el threshold de silencios, en el caso en el que la función random pase ese threshold, se generarán dos ritmos, uno que será negativo para el silencio (si el valor 1000 para la duración es una figura de negra, un valor de -1000 es un silencio de negra) y uno para la nota que le corresponde en la iteración de la lista. De esta forma, iteramos N veces, siendo N el número de notas, y añadimos silencios según el threshold.
 
 Una vez con la listas de valores de midicents para la voz y de duraciones de las notas, pasamos la lista de duraciones a un objeto característico de OpenMusic: \emph{omquantify}.
 
@@ -320,9 +371,13 @@ Este método se encarga convertir duraciones en milisegundos (tal y como tenemos
 \caption{Distintas visualizaciones de listas de midicents y duraciones} \label{fig:visores}
 \end{figure}
 
-El método \emph{omquantify} recibe cuatro parámetros: la lista de duraciones, el tempo, el compás y la mínima división posible. Estos tres últimos parámetros se leen del fichero obtenido de la interfaz. El tempo hace que una misma duración de una nota se interprete como una nota más larga o más corta. Por ello, se ha interpretado en la interfaz como valor de reducción y ampliación, porque para una misma voz, un valor más alto de reducción y ampliación genera la misma voz pero más larga. La mínima subdivisión se establece porque como es un método que traduce milisegundos a medición musical, si establecemos un valor muy bajo, para fluctuaciones irregulares (por ejemplo, un tempo de negra igual a 60), si tenemos 1002 milisegundos, podría generar fusas, semifusas o valores incluso más bajos (ya que una negra es 1000 ms) y con este valor se pueden corregir esas fluctuaciones.
+El método \emph{omquantify} recibe cuatro parámetros: la lista de duraciones, el tempo, el compás y la mínima división posible. Estos tres últimos parámetros se leen del fichero obtenido de la interfaz. El tempo hace que una misma duración de una nota se interprete como una nota más larga o más corta. Por ello, se ha interpretado en la interfaz como valor de reducción y ampliación, porque para una misma voz, un valor más alto de reducción y ampliación genera la misma voz pero más larga. 
+
+La mínima subdivisión se establece ya que es un método que traduce milisegundos a medición musical, si establecemos un valor muy bajo (un valor de nota bajo es un número alto, ya que una negra tiene valor 4, una corchea 8, una semicorchea 16, etc.), para valores que no son múltiplos o divisores de negra (siendo el valor de negra 1000 ms en un tempo de negra igual a 60) como puede ser 1002 milisegundos, podría generar fusas, semifusas o valores incluso más bajos indeseados (ya que el método \emph{omquantify} separaría el ejemplo como una negra de 1000 ms y una nota de 2 ms que tal vez no esperamos). MOdificando el valor de la subdivisión, ``redondea'' la nota de 2 ms al valor más próximo.
 
 Finalmente, una vez se haya cuantificado el valor de los tiempos en medición musical, obtenemos un objeto \emph{voice} con esta cuantificación y las notas en midicents. Iteramos tantas veces como voces hayamos especificado y devolvemos el valor a un objeto \emph{score} donde se puede reproducir y editar de forma limitada. También se llama al bucle para exportar para poder visualizarlo en programas profesionales de edición de partituras.
+
+Podemos seguir utilizando el asistente para que nos siga generando ideas acordes con lo que queremos, además aprovechando una de las características de la interfaz de OpenMusic, que es poder bloquear ciertos objetos para que no se vuelvan a calcular. Es decir, por ejemplo, si hemos generado una partitura con una serie que nos satisface, podemos bloquear el objeto de generación de series pulsando sobre él y pulsando la tecla \emph{b} del teclado para que se quede la evaluación previa (aparecerá una X en la esquina superior izquierda del objeto).
 
 
 \subsection{Uso de los ficheros exportados}
@@ -338,8 +393,6 @@ En este programa, en el menú \emph{File/MusicXML/Import...} podemos abrir los f
 \caption{Visualización del ejemplo en Finale} \label{fig:finale}
 \end{figure}
 
-Una vez tenemos el proyecto como tenemos mostrado, podemos seguir utilizando el asistente para que nos siga generando ideas acordes con lo que queremos, además aprovechando una de las características de la interfaz de OpenMusic, que es poder bloquear ciertos objetos para que no se vuelvan a calcular. Es decir, por ejemplo, si hemos generado una partitura con una serie que nos satisface, podemos bloquear el objeto de generación de series pulsando sobre él y pulsando la tecla \emph{b} del teclado para que se quede la evaluación previa (aparecerá una X en la esquina superior izquierda del objeto).
-
 Finalmente, si quisiéramos exportar este fichero a otro editor con una versión (aquí sí compatible) de MusicXML 3.0 o en fichero MIDI, exportamos o guardamos (respectivamente) y podemos trabajar en el contexto que estemos acostrumbrados a trabajar con partituras.
 
 
@@ -350,13 +403,14 @@ Finalmente, si quisiéramos exportar este fichero a otro editor con una versión
 \end{figure}
 
 \chapter{Conclusiones}\label{conclusiones}
-Tras haber probado el asistente bajo varias condiciones y diferentes parámetros, los resultados son satisfactorios, ya que se ha obtenido ayuda e ideas muy interesantes, con lo que se ha obtenido una herramienta musical informatizada complementaria para compositores. El objetivo de conseguir una herramienta que asiste a un músico a componer se ha conseguido aunque se pueden mejorar ciertos aspectos.
+Tras haber probado el asistente bajo varias condiciones y diferentes parámetros (ejemplos publicados en la carpeta Examples, véase Apéndice \ref{enlaces}), los resultados son satisfactorios, ya que se ha obtenido ayuda e ideas muy interesantes, con lo que se ha obtenido una herramienta musical informatizada complementaria para compositores. El objetivo de conseguir una herramienta que asiste a un músico a componer se ha conseguido aunque se pueden mejorar ciertos aspectos.
 
-El desarrollo de este sistema se ha basado en un modelo incremental, de forma que partíamos de una especificación del proyecto y se ha ido modificando el conjunto de características según avanzamos en los ``sprints'' o hitos a lo largo del cuatrimestre. Se han realizado reuniones con el tutor para enfocar estos hitos y los diferentes prototipos del proyecto hasta conseguir el prototipo final.
+El desarrollo de este sistema se ha basado en un modelo incremental, de forma que partíamos de una especificación del proyecto y se ha ido modificando el conjunto de características según avanzamos en las iteraciones o hitos a lo largo del cuatrimestre. Se han realizado reuniones con el tutor para enfocar estos hitos y los diferentes prototipos del proyecto hasta conseguir el prototipo final.
 
+\section{Líneas de trabajo futuras}
 Durante el desarrollo de este proyecto han surgido varios problemas de implementación dada la poca experiencia con OpenMusic, haciéndome ver las limitaciones que este programa tiene. El primer planteamiento fue el de implementar el método de generación de series dodecafónicas de forma visual. De hecho, hay gran parte implementado, pero a la hora de programar recursiones, la interfaz da muchos problemas y es mucho más difícil de conseguir que programándolo en Common Lisp. El ``patch'' que se inició a programar también está incluido en el proyecto y se llama \emph{seriegenerator}.
 
-Otro problema existe con el tratamiento de MusicXML. Este estándar para la visualización y guardado de partituras tiene diferentes versiones. OpenMusic tiene implementada una versión antigua de forma que muchos de los editores de partituras no aceptan ficheros con esta codificación. En su página (y como hemos demostrado en el ejemplo) recomiendan Finale, y desde ahí, se permite exportarlo a unos formatos con implementaciones más actualizadas. También ha habido problemas de compatibilidad probando versiones más actualizadas de PyQT (como es PyQT5) pero da problemas con algunos elementos de la interfaz como las señales de activación de funciones, con lo que se decidió utilizar PyQT4, que es más estable.
+Otro problema existe con el tratamiento de MusicXML. Este estándar para la visualización y guardado de partituras tiene diferentes versiones. OpenMusic tiene implementada una versión antigua que muchos de los editores de partituras no aceptan ficheros con esta codificación. En su página (y como hemos demostrado en el ejemplo) recomiendan Finale, y desde ahí, se permite exportarlo a unos formatos con implementaciones más actualizadas. También ha habido problemas de compatibilidad probando versiones más actualizadas de PyQT (como es PyQT5) pero da problemas con algunos elementos de la interfaz como las señales de activación de funciones, con lo que se decidió utilizar PyQT4, que es más estable.
 
 Durante el desarrollo del proyecto han surgido ideas (tanto programando, como leyendo documentación como hablando con otros músicos) para mejorar el proyecto a largo plazo. Entre esas ideas, existe la posibilidad de programar formas compositivas barrocas y clásicas (estructura A-B-A, contrapuntos por ampliación, reducción, cánon...), desarrollar las series entre voces (es decir, la primera voz puede tener la mitad de una serie y la segunda la otra mitad como se puede ver en la imagen \ref{fig:twelvetoneexample}).
 
@@ -378,14 +432,29 @@ De cualquier manera, tanto el desarrollo de esta aplicación como de la propia b
 \bibliography{bibliography}
 
 \appendix
+\chapter{Enlaces de descarga}\label{enlaces}
+\begin{itemize}
+
+\item Descarga de este documento: \url{https://github.com/Lesbinary/tfg/blob/master/Doc/memoir.pdf?raw=true}
+
+\item Descarga de los fuentes (documentación, proyecto y librería desarrollada): \url{https://github.com/Lesbinary/tfg/archive/master.zip}
+
+\item Enlace al repositorio en Github: \url{https://github.com/Lesbinary/tfg}
+
+\item Enlace a la licencia GPLv3: \url{https://github.com/Lesbinary/tfg/blob/master/LICENSE.txt}
+
+\item Enlace a ejemplos de partituras y audio en MIDI generado por el asistente: \url{https://github.com/Lesbinary/tfg/blob/master/Examples}
+\end{itemize}
+
+\appendix
 \chapter{Configuración del entorno}\label{aped.A}
-Dada la disponibilidad limitada de mediospara probar el proyecto (sistemas con GNU/Linux y Windows 7) y que el paquete de GNU/Linux de OpenMusic está aún en fase alpha/beta a fecha de hoy, se explica en este apéndice la configuración del proyecto para el asistente y la librería de la que depende sobre Windows 7.
+Dada la disponibilidad limitada de medios para probar el proyecto (sistemas con GNU/Linux y Windows 7) y que el paquete de GNU/Linux de OpenMusic está aún en fase alpha/beta a fecha de hoy, se explica en este apéndice la configuración del proyecto para el asistente y la librería de la que depende sobre Windows 7.
 
 Accedemos a la página del IRCAM donde están los binarios para descargar: \url{http://forumnet.ircam.fr/shop/fr/forumnet/43-openmusic.html}
 
 Instalamos el paquete con el asistente de instalación. En caso de no tener instalado Python, procedemos a descargarlo de su página web e instalarlo: \url{https://www.python.org/downloads/}
 
-Descomprimimos el código del asistente y veremos que en la raíz está el fichero \emph{RuleTranslator.py}. Se ejecuta (por terminal o con doble click si está convenientemente configurado por el instalador de Python) y podemos exportar unos datos de prueba. Podemos cerrar la interfaz para configurar OpenMusic.
+Descargamos el código del asistente (ver apéndice \ref{enlaces}) y veremos que en la raíz está el fichero \emph{RuleTranslator.py}. Se ejecuta (por terminal o con doble click si está convenientemente configurado por el instalador de Python) y podemos exportar unos datos de prueba. Podemos cerrar la interfaz para configurar OpenMusic.
 
 Abrimos OpenMusic y podemos elegir entre crear nuestro ``workspace'' o abrir uno ya existente. Si abrimos el que hemos descomprimido no hay que configurar nada. Vamos a explicar cómo configurar nuestro proyecto suponiendo que tenemos un ``workspace'' alternativo o uno nuevo.
 
