@@ -1512,56 +1512,10 @@
       <number>4</number>
      </property>
     </widget>
-    <widget class="QComboBox" name="measure1">
-     <property name="geometry">
-      <rect>
-       <x>650</x>
-       <y>20</y>
-       <width>41</width>
-       <height>22</height>
-      </rect>
-     </property>
-     <property name="currentText" stdset="0">
-      <string>4</string>
-     </property>
-     <property name="currentIndex">
-      <number>2</number>
-     </property>
-     <item>
-      <property name="text">
-       <string>1</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>2</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>4</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>8</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>16</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>32</string>
-      </property>
-     </item>
-    </widget>
     <widget class="QComboBox" name="measure2">
      <property name="geometry">
       <rect>
-       <x>690</x>
+       <x>691</x>
        <y>20</y>
        <width>41</width>
        <height>22</height>
@@ -1701,6 +1655,25 @@
      </property>
      <property name="maximum">
       <number>1000</number>
+     </property>
+     <property name="value">
+      <number>1</number>
+     </property>
+    </widget>
+    <widget class="QSpinBox" name="measure1">
+     <property name="geometry">
+      <rect>
+       <x>650</x>
+       <y>20</y>
+       <width>42</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="minimum">
+      <number>1</number>
+     </property>
+     <property name="maximum">
+      <number>100</number>
      </property>
      <property name="value">
       <number>1</number>

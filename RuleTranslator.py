@@ -61,7 +61,7 @@ class StartQT(QtGui.QMainWindow):
         f.close();
         
         f2 = open('TFG OM workspace\in-files\scoreParameters.txt','w')
-        f2.write('(' + str(self.ui.seriesPerVoice.value()) + ' ' + str(self.ui.percentajeNotes.value()) + ' ' + str(self.ui.thresholdOctaves.value()) + ' ' + str(self.ui.minOctave.value()) + ' ' + str(self.ui.maxOctave.value()) + ' ' + str(self.ui.measure1.currentText()) + ' ' + str(self.ui.measure2.currentText()) + ' ' + str(self.ui.reRatios.value()) + ' ' + str(self.ui.reRatios2.value()) + ' ' + str(self.ui.maxDivision.value()) + ' ' + str(self.ui.maxFigure.value()) + ' ' + str(self.ui.minFigure.value()) + ' ' + str(self.ui.voices.value()) + ' ' + str(self.ui.transpose.value()) + ')');
+        f2.write('(' + str(self.ui.seriesPerVoice.value()) + ' ' + str(self.ui.percentajeNotes.value()) + ' ' + str(self.ui.thresholdOctaves.value()) + ' ' + str(self.ui.minOctave.value()) + ' ' + str(self.ui.maxOctave.value()) + ' ' + str(self.ui.measure1.value()) + ' ' + str(self.ui.measure2.currentText()) + ' ' + str(self.ui.reRatios.value()) + ' ' + str(self.ui.reRatios2.value()) + ' ' + str(self.ui.maxDivision.value()) + ' ' + str(self.ui.maxFigure.value()) + ' ' + str(self.ui.minFigure.value()) + ' ' + str(self.ui.voices.value()) + ' ' + str(self.ui.transpose.value()) + ')');
         f2.close();
         
 		

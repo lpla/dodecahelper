@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'RuleTranslator.ui'
+# Form implementation generated from reading ui file 'RuleTranslatorInterface.ui'
 #
-# Created: Thu Jun 12 20:10:34 2014
+# Created: Tue Jun 17 17:34:48 2014
 #      by: PyQt4 UI code generator 4.10.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -394,17 +394,8 @@ class Ui_MainWindow(object):
         self.maxOctave.setMaximum(4)
         self.maxOctave.setProperty("value", 4)
         self.maxOctave.setObjectName(_fromUtf8("maxOctave"))
-        self.measure1 = QtGui.QComboBox(self.scoreProperties)
-        self.measure1.setGeometry(QtCore.QRect(650, 20, 41, 22))
-        self.measure1.setObjectName(_fromUtf8("measure1"))
-        self.measure1.addItem(_fromUtf8(""))
-        self.measure1.addItem(_fromUtf8(""))
-        self.measure1.addItem(_fromUtf8(""))
-        self.measure1.addItem(_fromUtf8(""))
-        self.measure1.addItem(_fromUtf8(""))
-        self.measure1.addItem(_fromUtf8(""))
         self.measure2 = QtGui.QComboBox(self.scoreProperties)
-        self.measure2.setGeometry(QtCore.QRect(690, 20, 41, 22))
+        self.measure2.setGeometry(QtCore.QRect(691, 20, 41, 22))
         self.measure2.setObjectName(_fromUtf8("measure2"))
         self.measure2.addItem(_fromUtf8(""))
         self.measure2.addItem(_fromUtf8(""))
@@ -442,6 +433,12 @@ class Ui_MainWindow(object):
         self.transpose.setMaximum(1000)
         self.transpose.setProperty("value", 1)
         self.transpose.setObjectName(_fromUtf8("transpose"))
+        self.measure1 = QtGui.QSpinBox(self.scoreProperties)
+        self.measure1.setGeometry(QtCore.QRect(650, 20, 42, 22))
+        self.measure1.setMinimum(1)
+        self.measure1.setMaximum(100)
+        self.measure1.setProperty("value", 1)
+        self.measure1.setObjectName(_fromUtf8("measure1"))
         self.pushButton = QtGui.QPushButton(self.centralwidget)
         self.pushButton.setGeometry(QtCore.QRect(790, 520, 101, 23))
         self.pushButton.setObjectName(_fromUtf8("pushButton"))
@@ -451,7 +448,6 @@ class Ui_MainWindow(object):
         MainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindow)
-        self.measure1.setCurrentIndex(2)
         self.measure2.setCurrentIndex(2)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
@@ -631,13 +627,6 @@ class Ui_MainWindow(object):
         self.figureTempo_label.setText(_translate("MainWindow", "Max and min figure tempo generation \n"
 "(for a r/e ratio of 2, 4 is a quarter note,\n"
 "8 is a quaver)", None))
-        self.measure1.setProperty("currentText", _translate("MainWindow", "4", None))
-        self.measure1.setItemText(0, _translate("MainWindow", "1", None))
-        self.measure1.setItemText(1, _translate("MainWindow", "2", None))
-        self.measure1.setItemText(2, _translate("MainWindow", "4", None))
-        self.measure1.setItemText(3, _translate("MainWindow", "8", None))
-        self.measure1.setItemText(4, _translate("MainWindow", "16", None))
-        self.measure1.setItemText(5, _translate("MainWindow", "32", None))
         self.measure2.setProperty("currentText", _translate("MainWindow", "4", None))
         self.measure2.setItemText(0, _translate("MainWindow", "1", None))
         self.measure2.setItemText(1, _translate("MainWindow", "2", None))
