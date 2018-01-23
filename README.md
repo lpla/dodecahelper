@@ -1,4 +1,4 @@
-# Asistente de composición de música dodecafónica para OpenMusic
+# DodecaHelper - Asistente de composición de música dodecafónica para OpenMusic
 
 ## Autor: Leopoldo Pla
 
@@ -13,7 +13,7 @@ Liberado bajo licencia GPLv3.
 ----
 
 
-# An assistant for twelve-tone music composition for OpenMusic
+# DodecaHelper - An assistant for twelve-tone music composition for OpenMusic
 
 ## Author: Leopoldo Pla
 
