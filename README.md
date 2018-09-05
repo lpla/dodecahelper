@@ -13,7 +13,7 @@ Liberado bajo licencia GPLv3.
 ----
 
 
-# DodecaHelper - An assistant for twelve-tone music composition for OpenMusic
+# DodecaHelper - Assistant for twelve-tone music composition for OpenMusic
 
 ## Author: Leopoldo Pla
 
